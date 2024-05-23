@@ -1,18 +1,18 @@
 ﻿
-public class transition
+public abstract class Transition
 {
     public State SourceState { get; set; }
     public State DestinationState { get; set; }
     public Action action { get; set; }
 
-    public transition(State sourceState, State destinationState, Action action)
+    public Transition(State sourceState, State destinationState, Action action)
     {
         SourceState = sourceState;
         DestinationState = destinationState;
         this.action = action;
     }
 
-    public double calcChangeCost(Action action)
+    public double calcChangeCost()
     {
         double changeCost= action.PercentageChange%100;
         if(action ==null)
@@ -21,6 +21,8 @@ public class transition
             return 1+changeCost;
         return 1-changeCost;
     }
+
+    public abstract void changeValue();
 
    
 }

@@ -1,15 +1,15 @@
 ﻿public class Store
 {
-  public int id;
-  public  int numberOfEmployees;
-  public int incomeBalance;
-  public  int numberOfCustomers;
-  public int advertisingBudget;
-  public int numberOfProducts;
-  public Employee[] employeeArr;
-  public Product[] productArr;
+    public int id;
+    public int numberOfEmployees;
+    public int incomeBalance;
+    public int numberOfCustomers;
+    public int advertisingBudget;
+    public int numberOfProducts;
+    public List<Employee> employeeArr;
+    public List<Product> productArr;
 
-    public Store(int id,int numberOfEmployees, int incomeBalance, int numberOfCustomers, int advertisingBudget, int numberOfProducts, Employee[] employees, Product[] products)
+    public Store(int id, int numberOfEmployees, int incomeBalance, int numberOfCustomers, int advertisingBudget, int numberOfProducts, List<Employee> employees, List<Product> products)
     {
         this.id = id;
         this.numberOfEmployees = numberOfEmployees;
@@ -46,12 +46,12 @@
         return numberOfProducts;
     }
 
-    public Employee[] GetEmployees()
+    public List<Employee> GetEmployees()
     {
         return employeeArr;
     }
 
-    public Product[] GetProducts()
+    public List<Product> GetProducts()
     {
         return productArr;
     }
@@ -82,15 +82,29 @@
         numberOfProducts = value;
     }
 
-    public void SetEmployees(Employee[] value)
+    public void SetEmployees(List<Employee> value)
     {
         employeeArr = value;
     }
 
-    public void SetProducts(Product[] value)
+    public void SetProducts(List<Product> value)
     {
         productArr = value;
     }
-}
 
+    public void AddEmployee(int managementLevel, int salary)
+    {
+        var newEmployee = new Employee(numberOfEmployees + 1, managementLevel, salary);
+        employeeArr.Add(newEmployee);
+    }
+
+    public void RemoveEmployee(int id)
+    {
+        var employee = employeeArr.FirstOrDefault(e => e.Id == id);
+        if (employee != null)
+        {
+            employeeArr.Remove(employee);
+        }
+    }
+}
 

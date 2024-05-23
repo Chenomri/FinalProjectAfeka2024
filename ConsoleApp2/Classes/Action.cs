@@ -5,7 +5,7 @@ public class Action
     public int PercentageChange;
     public bool isMorePercentage;
 
-    public Action(ActionType type, int percentageChange, bool isMorePercentage, State state)
+    public Action(ActionType type, int percentageChange, bool isMorePercentage)
     {
         Type = type;
         PercentageChange = percentageChange;

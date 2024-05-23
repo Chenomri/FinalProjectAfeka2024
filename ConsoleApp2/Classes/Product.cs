@@ -10,6 +10,10 @@
         NetProfit = netProfit;
         StockSize = numberOfProductsInStock;
     }
+    public int getId()
+    {
+        return Id; 
+    }
     public int GetStockSize()
     { 
         return StockSize;
@@ -18,6 +22,21 @@
     public int GetNetProfit()
     {
         return NetProfit;
+    }
+
+    public void setId(int id)
+    {
+        this.Id = id;
+    }
+
+    public void setStockSize(int stockSize)
+    {
+        this.StockSize = stockSize;
+    }
+
+    public void setNetProfit(int netProfit)
+    {
+        this.NetProfit = netProfit;
     }
 
 

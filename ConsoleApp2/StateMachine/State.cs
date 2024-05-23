@@ -1,4 +1,6 @@
-﻿public class State
+﻿using static System.Formats.Asn1.AsnWriter;
+
+public abstract class State
 {
     public int numberOfEmployees;
     public int incomeBalance;
@@ -22,54 +24,66 @@
         this.numberOfProducts = store.numberOfProducts;
         this.employeeArr = store.employeeArr;
         this.productArr = store.productArr;
-        this.sumOfSalary = calcSumOfSalary(store);
-        this.sumOfSale = calcSumOfSale(store);
-        this.expenses = calcExpenses(store);
-        this.revenues = calcRevenues(store);
-        this.BusinessEfficiency= calcBusinessEfficiency(store);
+        this.sumOfSalary = calcSumOfSalary(numberOfEmployees, employeeArr);
+        this.sumOfSale = calcSumOfSale(numberOfProducts, productArr);
+        this.expenses = calcExpenses(numberOfEmployees, employeeArr, advertisingBudget);
+        this.revenues = calcRevenues(numberOfProducts, productArr, incomeBalance);
+        this.BusinessEfficiency = calcBusinessEfficiency(numberOfEmployees, employeeArr, advertisingBudget, numberOfProducts, productArr, incomeBalance);
     }
 
-    public static int calcSumOfSalary(Store store)
+    public State(int numberOfEmployees, int incomeBalance, int numberOfCustomers, int advertisingBudget, int numberOfProducts, Employee[] employeeArr, Product[] productArr)
+    {
+        this.numberOfEmployees = numberOfEmployees;
+        this.incomeBalance = incomeBalance;
+        this.numberOfCustomers = numberOfCustomers;
+        this.advertisingBudget = advertisingBudget;
+        this.numberOfProducts = numberOfProducts;
+        this.employeeArr = employeeArr;
+        this.productArr = productArr;
+        this.sumOfSalary = calcSumOfSalary(numberOfEmployees, employeeArr);
+        this.sumOfSale = calcSumOfSale(numberOfProducts, productArr);
+        this.expenses = calcExpenses(numberOfEmployees, employeeArr, advertisingBudget);
+        this.revenues = calcRevenues(numberOfProducts, productArr, incomeBalance);
+        this.BusinessEfficiency = calcBusinessEfficiency(numberOfEmployees, employeeArr, advertisingBudget, numberOfProducts, productArr, incomeBalance);
+    }
+
+    public static int calcSumOfSalary(int numberOfEmployees, Employee[] employeeArr)
     {
         int sumOfSalary = 0;
-        for (int i = 0; i < store.numberOfEmployees; i++)
+        for (int i = 0; i < numberOfEmployees; i++)
         {
-            sumOfSalary += store.employeeArr[i].Salary;
+            sumOfSalary += employeeArr[i].Salary;
         }
         return sumOfSalary;
     }
 
-    public static int calcSumOfSale(Store store)
+    public static int calcSumOfSale(int numberOfProducts, Product[] productArr)
     {
         int sumOfSale = 0;
-        for (int i = 0; i < store.numberOfProducts; i++)
-            sumOfSale += store.productArr[i].NetProfit;
+        for (int i = 0; i < numberOfProducts; i++)
+            sumOfSale += productArr[i].NetProfit;
         return sumOfSale;
     }
-    public static int calcExpenses(Store store)
+
+    public static int calcExpenses(int numberOfEmployees, Employee[] employeeArr,int advertisingBudget)
     {
-        return calcSumOfSalary(store) + store.advertisingBudget;
+        return calcSumOfSalary(numberOfEmployees, employeeArr) + advertisingBudget;
     }
 
-    public static int calcRevenues(Store store)
+    public static int calcRevenues(int numberOfProducts, Product[] productArr, int incomeBalance)
     {
-        return calcSumOfSale(store) + store.incomeBalance;
+        return calcSumOfSale(numberOfProducts, productArr) + incomeBalance;
     }
-    public static int calcBusinessEfficiency(Store store)
+    public static int calcBusinessEfficiency(int numberOfEmployees, Employee[] employeeArr, int advertisingBudget, int numberOfProducts, Product[] productArr, int incomeBalance)
     {
-        return (calcRevenues(store)/calcExpenses(store))*100;
+        return (calcRevenues(numberOfProducts, productArr, incomeBalance)/ calcExpenses(numberOfEmployees, employeeArr, advertisingBudget)) * 100;
     }
-
-    public static void Enter(Action action)
-    { 
-    
-    }
-
-    public static void Exit(Action action)
-    { 
-        
-    }
-
-
 
 }
+
+
+
+
+
+
+
