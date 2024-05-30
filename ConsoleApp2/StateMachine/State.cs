@@ -7,8 +7,8 @@ public abstract class State
     public int numberOfCustomers;
     public int advertisingBudget;
     public int numberOfProducts;
-    public Employee[] employeeArr;
-    public Product[] productArr;
+    public List <Employee> employeeArr;
+    public List <Product> productArr;
     public int sumOfSalary;
     public int sumOfSale;
     public int expenses;
@@ -31,7 +31,7 @@ public abstract class State
         this.BusinessEfficiency = calcBusinessEfficiency(numberOfEmployees, employeeArr, advertisingBudget, numberOfProducts, productArr, incomeBalance);
     }
 
-    public State(int numberOfEmployees, int incomeBalance, int numberOfCustomers, int advertisingBudget, int numberOfProducts, Employee[] employeeArr, Product[] productArr)
+    public State(int numberOfEmployees, int incomeBalance, int numberOfCustomers, int advertisingBudget, int numberOfProducts,List <Employee> employeeArr, List <Product> productArr)
     {
         this.numberOfEmployees = numberOfEmployees;
         this.incomeBalance = incomeBalance;
@@ -47,7 +47,7 @@ public abstract class State
         this.BusinessEfficiency = calcBusinessEfficiency(numberOfEmployees, employeeArr, advertisingBudget, numberOfProducts, productArr, incomeBalance);
     }
 
-    public static int calcSumOfSalary(int numberOfEmployees, Employee[] employeeArr)
+    public static int calcSumOfSalary(int numberOfEmployees, List <Employee> employeeArr)
     {
         int sumOfSalary = 0;
         for (int i = 0; i < numberOfEmployees; i++)
@@ -57,7 +57,7 @@ public abstract class State
         return sumOfSalary;
     }
 
-    public static int calcSumOfSale(int numberOfProducts, Product[] productArr)
+    public static int calcSumOfSale(int numberOfProducts, List <Product> productArr)
     {
         int sumOfSale = 0;
         for (int i = 0; i < numberOfProducts; i++)
@@ -65,18 +65,33 @@ public abstract class State
         return sumOfSale;
     }
 
-    public static int calcExpenses(int numberOfEmployees, Employee[] employeeArr,int advertisingBudget)
+    public static int calcExpenses(int numberOfEmployees, List <Employee> employeeArr,int advertisingBudget)
     {
         return calcSumOfSalary(numberOfEmployees, employeeArr) + advertisingBudget;
     }
 
-    public static int calcRevenues(int numberOfProducts, Product[] productArr, int incomeBalance)
+    public static int calcRevenues(int numberOfProducts, List <Product> productArr, int incomeBalance)
     {
         return calcSumOfSale(numberOfProducts, productArr) + incomeBalance;
     }
-    public static int calcBusinessEfficiency(int numberOfEmployees, Employee[] employeeArr, int advertisingBudget, int numberOfProducts, Product[] productArr, int incomeBalance)
+    public static int calcBusinessEfficiency(int numberOfEmployees, List<Employee> employeeArr, int advertisingBudget, int numberOfProducts, List<Product> productArr, int incomeBalance)
     {
         return (calcRevenues(numberOfProducts, productArr, incomeBalance)/ calcExpenses(numberOfEmployees, employeeArr, advertisingBudget)) * 100;
+    }
+
+    public void AddEmployee(int managementLevel, int salary)
+    {
+        var newEmployee = new Employee(numberOfEmployees + 1, managementLevel, salary);
+        employeeArr.Add(newEmployee);
+    }
+
+    public void RemoveEmployee(int id)
+    {
+        var employee = employeeArr.FirstOrDefault(e => e.Id == id);
+        if (employee != null)
+        {
+            employeeArr.Remove(employee);
+        }
     }
 
 }

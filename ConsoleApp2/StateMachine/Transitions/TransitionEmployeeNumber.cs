@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp2.Program;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +15,21 @@ namespace ConsoleApp2.StateMachine
 
         public override void changeValue()
         {
-            int numChangeEmploy= (int)(this.SourceState.numberOfEmployees * calcChangeCost() - this.SourceState.numberOfEmployees);
-            
+            int numChangeEmploy = (int)(this.SourceState.numberOfEmployees * calcChangeCost() - this.SourceState.numberOfEmployees);
+
             if (numChangeEmploy < 0)
             {
                 for (int i = 0; i < numChangeEmploy; i++)
                 {
-                    
+
+                    SourceState.RemoveEmployee(i);
                 }
             }
+            else
+                for (int i = 0; i < numChangeEmploy; i++)
+                {
+                    SourceState.AddEmployee(1, DataFolder.AddData.);
+                }
+        }
     }
 }

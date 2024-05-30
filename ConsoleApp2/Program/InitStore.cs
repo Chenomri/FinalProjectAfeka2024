@@ -20,13 +20,13 @@ namespace ConsoleApp2.Program
 
             int numberOfDiffrentProducts = GetUserInputAsInt("Enter the number of diffrent products");
 
-            Employee[] arrEmploy=new Employee[numberOfEmployees];
+            List<Employee> arrEmploy = new List<Employee>(numberOfEmployees);
 
-            for(int i =0; i< numberOfEmployees; i++) 
+            for (int i =0; i< numberOfEmployees; i++) 
             {
                 arrEmploy[i] = initEmoloyee(i);
             }
-            Product[] arrProduct = new Product[numberOfDiffrentProducts];
+            List<Product> arrProduct = new List <Product>(numberOfDiffrentProducts);
 
             for (int i = 0; i < numberOfDiffrentProducts; i++)
             {

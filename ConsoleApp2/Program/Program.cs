@@ -1,5 +1,5 @@
-﻿using ConsoleApp2.Data;
-using ConsoleApp2.Data.SQLite;
+﻿using ConsoleApp2.DataFolder.SaveData;
+using ConsoleApp2.DataFolder.AddData;
 using ConsoleApp2.Program;
 using System;
 using System.Data.SQLite;

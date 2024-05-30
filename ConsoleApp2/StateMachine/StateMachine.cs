@@ -5,7 +5,7 @@ public class StateMachine
 {
     private State currentState;
     private List<State> states;
-    private List<transition> transitions;
+    private List<Transition> transitions;
 
     public StateMachine()
     {
@@ -13,7 +13,7 @@ public class StateMachine
         states = new List<State>();
 
         // Initialize the list of transitions
-        transitions = new List<transition>();
+        transitions = new List<Transition>();
     }
 
     public void AddState(State state)
@@ -21,7 +21,7 @@ public class StateMachine
         states.Add(state);
     }
 
-    public void AddTransition(transition transition)
+    public void AddTransition(Transition transition)
     {
         transitions.Add(transition);
     }

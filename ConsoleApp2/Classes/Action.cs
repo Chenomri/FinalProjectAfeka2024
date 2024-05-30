@@ -11,6 +11,35 @@ public class Action
         PercentageChange = percentageChange;
         this.isMorePercentage = isMorePercentage;
     }
+
+    public ActionType GetActionType()
+    {
+        return Type;
+    }
+
+    public int getPercentageChange()
+    {
+        return PercentageChange;
+    }
+
+    public bool getIsMorePercentage()
+    {
+        return isMorePercentage; 
+    }
+    public void setActionType(ActionType type)
+    {
+         this.Type=type;
+    }
+
+    public void setPercentageChange(int percentageChange)
+    {
+        this.PercentageChange= percentageChange;
+    }
+
+    public void setIsMorePercentage(bool isMorePercentage)
+    {
+        this.isMorePercentage = isMorePercentage;
+    }
 }
 
 public enum ActionType
@@ -22,3 +51,5 @@ public enum ActionType
     NumberDifferentProducts,
     NumberOfEmployees
 }
+
+
